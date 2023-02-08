@@ -4,7 +4,7 @@ import seaborn as seaborn
 import streamlit as st
 
 
-dados = pd.read_csv("dados/Student_Performance_new.csv")
+dados = pd.read_csv("dataset/Student_Performance_new.csv")
 st.dataframe(dados)
 
 

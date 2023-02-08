@@ -17,7 +17,7 @@ st.subheader("Esta página tem como objetivo mostrar a analise dos dados do data
 classifier_name = st.sidebar.selectbox("Selecione um classificador", ("Árvore de decisão", "Bernoulli","KNN"))
 
 
-dados = pd.read_csv("dados/Student_Performance_new.csv")
+dados = pd.read_csv("dataset/Student_Performance_new.csv")
 
 
 st.dataframe(dados)  # comando q aparece toda a tabela
