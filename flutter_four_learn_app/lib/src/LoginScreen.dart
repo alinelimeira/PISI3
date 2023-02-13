@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: PrimaryOutlinedButton(
                           title: 'CRIAR CONTA',
                           onPressed: () {
-                            Navigator.of(context).pushNamed('/signUp');
+                            Navigator.of(context).pushNamed('/Register');
                           }),
                     ),
                   ],

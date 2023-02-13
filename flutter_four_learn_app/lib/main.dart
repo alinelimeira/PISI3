@@ -1,9 +1,15 @@
 import 'package:flutter_four_learn_app/src/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'src/FirebaseAuth.dart';
+import 'src/RegisterScreen.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const FourLearnApp());
 }
 
@@ -25,6 +31,7 @@ class FourLearnApp extends StatelessWidget {
         routes: {
           '/': (context) => LoginScreen(),
           '/FirebaseAuth': (context) => const FirebaseAuth(),
+          '/Register': (context) => const RegisterScreen(),
         });
   }
 }
