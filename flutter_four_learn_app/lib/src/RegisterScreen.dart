@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_four_learn_app/util/textButtons.dart';
+import 'package:flutter_four_learn_app/util/textFormFields.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -79,18 +80,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             //Nome do USUÁRIO
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
-                              child: TextFormField(
+                              child: OutlinedTextFormField(
                                 controller: _name,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                decoration: const InputDecoration(
-                                  hintText: 'Nome',
-                                  isDense: true,
-                                  icon: Icon(Icons.person_outline),
-                                ),
+                                hintText: 'Nome',
+                                isDense: true,
+                                icon: Icon(Icons.person_outline),
                                 validator: (val) {
                                   if (val == null) {
-                                    return 'Campo obrigatório';
+                                    return 'campo obrigatório';
                                   }
                                 },
                               ),
@@ -98,16 +97,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             //EMAIL user@email.com
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
-                              child: TextFormField(
+                              child: OutlinedTextFormField(
                                 controller: _email,
                                 enableSuggestions: false,
                                 autocorrect: false,
                                 keyboardType: TextInputType.emailAddress,
-                                decoration: const InputDecoration(
-                                  hintText: 'Email',
-                                  isDense: true,
-                                  icon: Icon(Icons.email_outlined),
-                                ),
+                                hintText: 'Email',
+                                isDense: true,
+                                icon: Icon(Icons.email_outlined),
                                 validator: (val) {
                                   if (val == null) {
                                     return 'Campo obrigatório';
@@ -119,16 +116,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             //SENHA ********
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
-                              child: TextFormField(
+                              child: OutlinedTextFormField(
                                 controller: _password,
                                 obscureText: true,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                decoration: const InputDecoration(
-                                  hintText: 'Senha',
-                                  isDense: true,
-                                  icon: Icon(Icons.lock_outline),
-                                ),
+                                hintText: 'Senha',
+                                isDense: true,
+                                icon: Icon(Icons.lock_outline),
                                 validator: (val) {
                                   if (val == null) {
                                     return 'Campo obrigatório';
@@ -140,16 +135,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             //Confirmar SENHA ********
                             Padding(
                               padding: EdgeInsets.only(bottom: 15),
-                              child: TextFormField(
+                              child: OutlinedTextFormField(
                                 controller: _passwordcheck,
                                 obscureText: true,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                decoration: InputDecoration(
-                                  hintText: 'Confirmar senha',
-                                  isDense: true,
-                                  icon: Icon(Icons.lock_outline),
-                                ),
+                                hintText: 'Confirmar senha',
+                                isDense: true,
+                                icon: Icon(Icons.lock_outline),
                                 validator: (val) {
                                   if (val == null) {
                                     return 'Campo obrigatório';
@@ -165,15 +158,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             // TELEFONE (00) 00000-0000
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15),
-                              child: TextFormField(
+                              child: OutlinedTextFormField(
                                 controller: _telefone,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                decoration: const InputDecoration(
-                                  hintText: 'Telefone',
-                                  isDense: true,
-                                  icon: Icon(Icons.phone_outlined),
-                                ),
+                                hintText: 'Telefone',
+                                isDense: true,
+                                icon: Icon(Icons.phone_outlined),
                                 validator: (val) {
                                   if (val == null) {
                                     return 'Campo obrigatório';
