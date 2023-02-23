@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_four_learn_app/util/textButtons.dart';
+import 'package:flutter_four_learn_app/util/textFormFields.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -68,32 +69,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     //email
                     Padding(
                       padding: const EdgeInsets.only(bottom: 15),
-                      child: TextField(
+                      child: OutlinedTextFormField(
                         controller: _email,
                         enableSuggestions: false,
                         autocorrect: false,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          isDense: true,
-                          icon: Icon(Icons.email_outlined),
-                        ),
+                        hintText: 'Email',
+                        isDense: true,
+                        icon: Icon(Icons.email_outlined),
                       ),
                     ),
 
                     // Senha
                     Padding(
                       padding: const EdgeInsets.only(bottom: 80),
-                      child: TextField(
+                      child: OutlinedTextFormField(
                         controller: _password,
                         obscureText: true,
                         enableSuggestions: false,
                         autocorrect: false,
-                        decoration: const InputDecoration(
-                          hintText: 'Senha',
-                          isDense: true,
-                          icon: Icon(Icons.lock_outline),
-                        ),
+                        hintText: 'Senha',
+                        isDense: true,
+                        icon: Icon(Icons.lock_outline),
                       ),
                     ),
 
@@ -109,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             final UserCredential = await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: email, password: password);
-                            Navigator.of(context).pushNamed('/mainScreen');
+                            Navigator.of(context).pushNamed('/MainScreen');
                             //print(UserCredential);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {

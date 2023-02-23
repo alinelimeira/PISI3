@@ -4,6 +4,7 @@ import 'src/FirebaseAuth.dart';
 import 'src/RegisterScreen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'src/mainScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,7 @@ class FourLearnApp extends StatelessWidget {
           '/': (context) => LoginScreen(),
           '/FirebaseAuth': (context) => const FirebaseAuth(),
           '/Register': (context) => const RegisterScreen(),
+          '/MainScreen': (context) => const MainScreen()
         });
   }
 }
