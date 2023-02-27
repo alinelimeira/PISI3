@@ -1,5 +1,6 @@
 import 'package:flutter_four_learn_app/src/LoginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_four_learn_app/src/ProfileScreen.dart';
 import 'src/FirebaseAuth.dart';
 import 'src/RegisterScreen.dart';
 import 'firebase_options.dart';
@@ -28,12 +29,13 @@ class FourLearnApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
         //Definindo rotas no APP
-        initialRoute: '/firebaseAuth',
+        initialRoute: '/MainScreen',
         routes: {
           '/': (context) => LoginScreen(),
           '/FirebaseAuth': (context) => const FirebaseAuth(),
           '/Register': (context) => const RegisterScreen(),
-          '/MainScreen': (context) => const MainScreen()
+          '/MainScreen': (context) => const MainScreen(),
+          '/ProfileScreen': (context) => const ProfileScreen()
         });
   }
 }

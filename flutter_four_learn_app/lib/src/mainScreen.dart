@@ -38,17 +38,25 @@ class _MainScreenState extends State<MainScreen> {
         children: [MainMenuScreen(), ProfileScreen()],
         onPageChanged: setScreenAtual,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: screenAtual,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.house), label: 'Menu'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil')
-        ],
-        onTap: (screen) {
-          pc.animateToPage(screen,
-              duration: Duration(milliseconds: 400), curve: Curves.ease);
-        },
-        backgroundColor: Colors.red,
+      bottomNavigationBar: Container(
+        decoration:
+            BoxDecoration(border: Border(top: BorderSide(color: Colors.black))),
+        child: BottomNavigationBar(
+          currentIndex: screenAtual,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.house), label: 'Menu'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil')
+          ],
+          onTap: (screen) {
+            pc.animateToPage(screen,
+                duration: Duration(milliseconds: 400), curve: Curves.ease);
+          },
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.black,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+        ),
       ),
     );
   }
