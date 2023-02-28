@@ -1,5 +1,10 @@
 
-race/ethnicity : The race or ethnicity of the participant
+race/ethnicity : The race or ethnicity of the participant:Group A: White - British
+    Group B: White - Irish
+    Group C:White - Any other white background
+    Group D:Mixed - White & Black Caribbean
+    Group E:Mixed - White & Black African
+
 parental level of education : The parental level of eduction of the participant
 lunch
 test preparation course:Whether the participant took the test preparation course or not
