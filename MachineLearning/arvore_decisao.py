@@ -16,7 +16,8 @@ import estudo_dos_dados
 dados = estudo_dos_dados.dados
 
 
-st.title ("Analisando a variável math_percentage_class")
+st.title ("Algoritmo Árvore de Decisão")
+st.write("Analisando a variável math_percentage_class ")
 fig, ax = plt.subplots()
 ax = sns.countplot(x = 'math_percentage_class', data = dados)
 ax.figure.set_size_inches(12, 10)
