@@ -12,4 +12,4 @@ streamlit==1.19.0
 toml>=0.10.2
 xlrd>=2.0.1
 openpyxl>=3.0
-
+imbalanced-learn==0.10.1
