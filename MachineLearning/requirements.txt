@@ -1,8 +1,12 @@
 numpy>=1.22.3
-pandas>=1.4.2
+pandas>=1.5.2
 pandas-profiling==3.5.0
 plotly>=5.7.0
 python-dotenv>=0.20.0
+matplotlib=>3.6.2
+seaborn=>0.12.1
+imbalanced-learn=>0.10.1
+sklearn==0.0.post1
 scipy>=1.8.0
 streamlit>=1.8.1
 toml>=0.10.2
