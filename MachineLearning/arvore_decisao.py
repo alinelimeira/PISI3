@@ -11,7 +11,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import precision_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-from estudo_dos_dados import dados
+import estudo_dos_dados
+
+dados = estudo_dos_dados.dados
 
 
 st.title ("Analisando a variável math_percentage_class")
