@@ -7,11 +7,13 @@ class StandardTextField extends StatefulWidget {
   final Color color;
   final Color textColor;
   final double fontSize;
+  final Widget? child;
   const StandardTextField(
-      {required this.title,
+      {this.title = '',
       this.color = const Color(0xFF44CDEB),
       this.textColor = Colors.black,
       this.fontSize = 16,
+      this.child,
       super.key});
 
   @override
