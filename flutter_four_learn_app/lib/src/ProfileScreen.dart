@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_four_learn_app/util/textButtons.dart';
 import 'package:flutter_four_learn_app/util/textFields.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -28,9 +29,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    String usuario = '3';
+
+    String usuario = '';
+
     String? email = FirebaseAuth.instance.currentUser?.email;
+
     var uid = FirebaseAuth.instance.currentUser!.uid;
+
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('users');
 
@@ -94,7 +99,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Divider(
               color: Colors.black,
               thickness: 1,
-            )
+            ),
+            SizedBox(
+                height: 45,
+                child: BlockedButton(
+                    title: 'SAIR',
+                    onPressed: () async {
+                      Navigator.of(context).pushNamed('/');
+                    }))
           ],
         ),
       ),

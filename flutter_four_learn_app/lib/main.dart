@@ -1,3 +1,4 @@
+import 'package:flutter_four_learn_app/src/FomularioScreen.dart';
 import 'package:flutter_four_learn_app/src/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_four_learn_app/src/ProfileScreen.dart';
@@ -35,7 +36,8 @@ class FourLearnApp extends StatelessWidget {
           '/FirebaseAuth': (context) => const FirebaseAuth(),
           '/Register': (context) => const RegisterScreen(),
           '/MainScreen': (context) => const MainScreen(),
-          '/ProfileScreen': (context) => const ProfileScreen()
+          '/ProfileScreen': (context) => const ProfileScreen(),
+          '/FormularioScreen': (context) => const FormularioScreen()
         });
   }
 }

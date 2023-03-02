@@ -65,7 +65,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
               child: PrimaryOutlinedButton(
                 title: 'Forumulário',
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/ProfileScreen');
+                  Navigator.of(context).pushNamed('/FormularioScreen');
                 },
               ),
             ),
