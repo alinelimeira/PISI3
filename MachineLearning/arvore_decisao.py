@@ -17,9 +17,9 @@ dados = estudo_dos_dados.dados
 
 
 st.title ("Algoritmo Árvore de Decisão")
-st.write("Analisando a variável math_percentage_class ")
+st.write("Analisando a variável nota_matematica ")
 fig, ax = plt.subplots()
-ax = sns.countplot(x = 'math_percentage_class', data = dados)
+ax = sns.countplot(x = 'nota_matematica', data = dados)
 ax.figure.set_size_inches(12, 10)
 st.pyplot(fig)
 
@@ -29,15 +29,15 @@ st.markdown("<p style = 'font-size: 20px'>Com isso é necessário fazer o SMOTE:
 
 #fazendo o SMOTE
 
-X = dados.drop('math_percentage_class', axis = 1)
-y = dados['math_percentage_class']
+X = dados.drop('nota_matematica', axis = 1)
+y = dados['nota_matematica']
 
 smt = SMOTE(random_state=123)  # Instancia um objeto da classe SMOTE
 X, y = smt.fit_resample(X, y)
 dados = pd.concat([X,y], axis = 1)
 
 fig, ax = plt.subplots()
-ax = sns.countplot(x='math_percentage_class', data=dados)
+ax = sns.countplot(x='nota_matematica', data=dados)
 st.pyplot(fig)
 
 st.markdown ('''
@@ -47,8 +47,8 @@ st.markdown ('''
 
 ########### FAZENDO A ARVORE DE DECISAO #################################
 
-X = dados.drop('math_percentage_class', axis = 1)
-y = dados['math_percentage_class']
+X = dados.drop('nota_matematica', axis = 1)
+y = dados['nota_matematica']
 
 norm = StandardScaler() 
 X_normalizado = norm.fit_transform(X)
