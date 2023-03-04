@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import seaborn as seaborn
+import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -53,7 +53,7 @@ counts = dados['race/ethnicity'].value_counts(normalize=True)
 
 fig, ax = plt.subplots(figsize =(5,5))
 plt.pie(counts.values, labels=counts.index, autopct='%1.1f%%')
-plt.title("Porcentagem de cada raça/etnia")
+plt.title("Porcentagem de cada raça/etnia", fontsize = 12)
 plt.legend(counts.index, bbox_to_anchor = (1, 1))
 st.pyplot(fig)
 
@@ -68,19 +68,23 @@ st.markdown("Group E: Mixed - White and Black African ")
 
 
 
-## nivel de educacao dos pais
+#Nivel de educacao dos pais
 
-st.markdown("<p  style = 'font-size: 20px'> Nível de educação dos pais:</p> ", unsafe_allow_html=True)
-plt.title("Nivel de education dos pais")
-counts = dados ['parental level of education']. value_counts()
-colors = ['#9e4a49', '#9e4a49', '#9e4a49', '#9e4a49', '#9e4a49', '#9e4a49']
+st.markdown("<p style = 'font-size: 20px' > Verificando a quantidade do nivel educacional dos pais dos estudantes: </p> ", unsafe_allow_html=True)
 
+fig, ax = plt.subplots(figsize=(10,6))
+sns.countplot(x = "parental level of education", data = dados, ax = ax)
+plt.title("Relação quantidade e nivel de educação dos pais", fontsize = 14)
+ax.set_xlabel("Educação")
+ax.set_ylabel("Quantidade")
+st.pyplot(fig)
 
-fig, ax = plt.subplots(figsize =(12,7),layout='constrained')
-plt.xlabel("Nivel de educação dos pais")
-plt.ylabel("Quantidade")
-plt.bar(counts.index, counts.values, color=colors[:len(counts.index)])
+# Tipo de almoco
 
+counts = dados['lunch'].value_counts(normalize=True)
 
-plt.legend()
+fig, ax = plt.subplots(figsize =(5,5))
+plt.pie(counts.values, labels=counts.index, autopct='%1.1f%%')
+plt.title("Porcentagem do tipo de almoço dos estudantes", fontsize = 12)
+plt.legend(counts.index, bbox_to_anchor = (1, 1))
 st.pyplot(fig)
