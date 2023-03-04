@@ -16,8 +16,8 @@ st.subheader("Esta página tem como objetivo mostrar a analise dos dados do data
 #SIDEBAR 
 classifier_name = st.sidebar.selectbox("Selecione um classificador", ("Árvore de decisão", "Bernoulli","KNN"))
 
-
-dados = pd.read_csv("MachineLearning/dataset/Student_Performance_new.csv")
+# ! mudar o diretorio quando for testar para cloud para  "MachineLearning/dataset/Student_Performance_new.csv"
+dados = pd.read_csv("../MachineLearning/dataset/Student_Performance_new.csv")
 
 
 st.dataframe(dados)  # comando q aparece toda a tabela
