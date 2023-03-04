@@ -48,7 +48,7 @@ a_renomear = {
     "parental level of education_high school": 'ensino_medio',
     "parental level of education_master's degree": 'nivel_mestre',
     "parental level of education_some college" : 'nivel_tecnologo ',
-    "parental level of education_some high school" : 'ensino_medio_incompleto',
+    "parental level of education_some high school" : 'algum_ensino_medio',
     "test preparation course_completed" : 'teste_preparacao_completo',
     "test preparation course_none" : "sem_teste_preparacao",
     "math percentage" : "math_percentage",
@@ -92,6 +92,10 @@ dados_final['pessoas_pardas_pretas'] = dados_final['race_ethnicity_group_D'] + d
 #APAGANDO COLUNAS ANTIGAS DAS ETNIAS
 dados_final = dados_final.drop(['race_ethnicity_group_A','race_ethnicity_group_B' ,'race_ethnicity_group_C','race_ethnicity_group_D', 'race_ethnicity_group_E'], axis=1)
 
+
+#Mudando as variaveis do ensino medio
+dados_final['nivel_ensino_medio'] = dados_final['ensino_medio'] + dados_final['algum_ensino_medio'] 
+dados_final = dados_final.drop(['ensino_medio','algum_ensino_medio'], axis=1)
 
 dados = pd.DataFrame(dados_final)
 
