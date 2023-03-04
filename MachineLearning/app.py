@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import numpy as np
+import squarify
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import matplotlib.cm as cm
@@ -33,8 +34,13 @@ duplicatas =  dados.duplicated()
 num_duplicatas = duplicatas.sum()
 st.table(pd.DataFrame([num_duplicatas]))
 
+
+### titulo
+st.title("Analisando gráficos com apenas uma variável")
+
+
 ##tabela mulher x homem
-st.write("<p  style = 'font-size: 20px'> Analisando a quantidade de mulheres e homens: </p> ", unsafe_allow_html=True)
+st.write("<p  style = 'font-size: 20px'> Quantidade de mulheres e homens: </p> ", unsafe_allow_html=True)
 counts = dados['sex'].value_counts()
 colors = ['#D2103C', '#00ACEE']
 
@@ -79,6 +85,7 @@ ax.set_xlabel("Educação")
 ax.set_ylabel("Quantidade")
 st.pyplot(fig)
 
+
 # Tipo de almoco
 
 counts = dados['lunch'].value_counts(normalize=True)
@@ -87,4 +94,13 @@ fig, ax = plt.subplots(figsize =(5,5))
 plt.pie(counts.values, labels=counts.index, autopct='%1.1f%%')
 plt.title("Porcentagem do tipo de almoço dos estudantes", fontsize = 12)
 plt.legend(counts.index, bbox_to_anchor = (1, 1))
+st.pyplot(fig)
+
+# teste de preparacao
+
+# matematica
+
+fig, ax = plt.subplots(figsize=(10,6))
+sns.boxplot( x= dados["math percentage"], color = "lightblue", ax = ax)
+plt.title("Distribuição da nota de matemática", fontsize=20)
 st.pyplot(fig)
