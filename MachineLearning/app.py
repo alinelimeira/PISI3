@@ -18,7 +18,7 @@ classifier_name = st.sidebar.selectbox("Selecione um classificador", ("Árvore d
 
 # ! mudar o diretorio quando for testar para cloud para  "MachineLearning/dataset/Student_Performance_new.csv"
 dados = pd.read_csv("../MachineLearning/dataset/Student_Performance_new.csv")
-
+dados = dados.drop(columns=['Unnamed: 0'])
 
 st.dataframe(dados)  # comando q aparece toda a tabela
 
@@ -115,3 +115,18 @@ fig, ax = plt.subplots(figsize=(9,5))
 sns.boxplot( x= dados["writing score percentage"], color = "lightblue", ax = ax)
 plt.title("Distribuição da nota de escrita", fontsize=18)
 st.pyplot(fig)
+
+##ANALISES COM DUAS VARIÁVEIS
+
+
+st.title("Analisando os dados com gráficos de duas variáveis")
+
+
+##### Matriz de confusao dos dados numericos
+
+fig, ax = plt.subplots(figsize=(16,9))
+sns.heatmap(dados.corr(),annot=True, square=True, ax=ax)
+plt.title("Matriz de confusão para as notas", fontsize=20, fontstyle="oblique")
+st.pyplot(fig)
+
+
