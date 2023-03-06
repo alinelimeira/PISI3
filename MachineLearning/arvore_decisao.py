@@ -66,17 +66,42 @@ predito_ArvoreDecisao = dtc.predict(X_teste)
 
 importances = dtc.feature_importances_
 indices = np.argsort(importances) [::1]
-
+fig, ax = plt.subplots()
 plt.bar(range(X_treino.shape[1]), importances[indices])
 plt.xticks(range(X_treino.shape[1]), dados.columns[1:][indices], rotation = 90)
 plt.xlim([-1, X_treino.shape[1]])
-plt.ylim([0, 0.6])
+plt.ylim([0, 0.5])
 
 plt.tight_layout()
 plt.title("Grau de importância das features pela Árvore de decisão")
 
 # Exibindo gráfico no Streamlit
-st.pyplot()
+st.pyplot(fig)
+
+################ SEGUNDO GRAFICO MDI
+
+
+importances = dtc.feature_importances_
+fig, ax = plt.subplots()
+ax.bar(range(len(importances)), importances[indices])
+ax.set_xticks(range(len(importances)))
+ax.set_xticklabels(range(1, len(importances)+1), rotation=45, ha="right")
+ax.set_xlabel("Característica")
+ax.set_ylabel("Importância")
+ax.set_title("Importâncias das características")
+
+# Mostra o gráfico no Streamlit
+st.pyplot(fig)
+
+
+################ terceiro GRAFICO MDI
+
+
+
+
+
+
+
 
 
 ####### FAZENDO MATRIZ DE  CONFUSÃO ####
