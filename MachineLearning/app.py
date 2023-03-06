@@ -97,9 +97,21 @@ st.pyplot(fig)
 
 # teste de preparacao
 
-# matematica
+# boxplot matematica
 
-fig, ax = plt.subplots(figsize=(10,6))
+fig, ax = plt.subplots(figsize=(9,5))
 sns.boxplot( x= dados["math percentage"], color = "lightblue", ax = ax)
-plt.title("Distribuição da nota de matemática", fontsize=20)
+plt.title("Distribuição da nota de matemática", fontsize=18)
+st.pyplot(fig)
+
+#nota leitura
+fig, ax = plt.subplots(figsize=(9,5))
+sns.boxplot( x= dados["reading score percentage"], color = "lightblue", ax = ax)
+plt.title("Distribuição da nota de leitura", fontsize=18)
+st.pyplot(fig)
+
+#nota escrita
+fig, ax = plt.subplots(figsize=(9,5))
+sns.boxplot( x= dados["writing score percentage"], color = "lightblue", ax = ax)
+plt.title("Distribuição da nota de escrita", fontsize=18)
 st.pyplot(fig)
