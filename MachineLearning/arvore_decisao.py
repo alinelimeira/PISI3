@@ -16,15 +16,16 @@ import estudo_dos_dados
 dados = estudo_dos_dados.dados
 
 
-st.title ("Algoritmo Árvore de Decisão")
+st.markdown ("<p style = 'font-size: 20px'> Iniciando o algoritmo Árvore de Decisão </p>", unsafe_allow_html=True)
 st.write("Analisando a variável nota_matematica ")
 fig, ax = plt.subplots()
 ax = sns.countplot(x = 'nota_matematica', data = dados)
-ax.figure.set_size_inches(12, 10)
+#ax.figure.set_size_inches(12, 10)
+plt.figure(figsize=(10, 8))
 st.pyplot(fig)
 
 
-st.markdown("<p style = 'font-size: 20px'> As colunas 0 e 1 no gráfico mostram que os dados da variável math_percentage_class não está balanceada em relação ao resto das variáveis.</p>", unsafe_allow_html=True)
+st.markdown("<p style = 'font-size: 20px'> As colunas 0 e 1 no gráfico mostram que os dados da variável nota_matematica não está balanceada em relação ao resto das variáveis.</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'font-size: 20px'>Com isso é necessário fazer o SMOTE:</p>", unsafe_allow_html=True)
 
 #fazendo o SMOTE
@@ -38,12 +39,10 @@ dados = pd.concat([X,y], axis = 1)
 
 fig, ax = plt.subplots()
 ax = sns.countplot(x='nota_matematica', data=dados)
+plt.figure(figsize=(10, 8))
 st.pyplot(fig)
 
-st.markdown ('''
-
-## Após fazer o oversampling, tem inicio o Algoritmo Árvore de decisão
-''', unsafe_allow_html=True)
+st.markdown ("<p style = 'font-size: 20px'>Após fazer o oversampling, tem inicio o Algoritmo Árvore de decisão: </p>", unsafe_allow_html=True)
 
 ########### FAZENDO A ARVORE DE DECISAO #################################
 
@@ -62,48 +61,22 @@ dtc = DecisionTreeClassifier(criterion = 'entropy', random_state = 42) #usando a
 dtc.fit(X_treino, y_treino)
 predito_ArvoreDecisao = dtc.predict(X_teste)
 
-#calculando o grau de importancia por meio da decision tree e gráfico
+
+### calculando o grau de importancia por meio da decision tree e gráfico
 
 importances = dtc.feature_importances_
-indices = np.argsort(importances) [::1]
-fig, ax = plt.subplots()
-plt.bar(range(X_treino.shape[1]), importances[indices])
-plt.xticks(range(X_treino.shape[1]), dados.columns[1:][indices], rotation = 90)
-plt.xlim([-1, X_treino.shape[1]])
-plt.ylim([0, 0.5])
+feature_importances = pd.DataFrame({"feature": X.columns, "importance": importances})
+feature_importances = feature_importances.sort_values("importance", ascending=False)
+#st.dataframe(feature_importances)
 
-plt.tight_layout()
-plt.title("Grau de importância das features pela Árvore de decisão")
-
-# Exibindo gráfico no Streamlit
-st.pyplot(fig)
-
-################ SEGUNDO GRAFICO MDI
-
-
-importances = dtc.feature_importances_
-fig, ax = plt.subplots()
-ax.bar(range(len(importances)), importances[indices])
-ax.set_xticks(range(len(importances)))
-ax.set_xticklabels(range(1, len(importances)+1), rotation=45, ha="right")
-ax.set_xlabel("Característica")
-ax.set_ylabel("Importância")
-ax.set_title("Importâncias das características")
-
-# Mostra o gráfico no Streamlit
-st.pyplot(fig)
-
-
-################ terceiro GRAFICO MDI
-
-
-
-
-
-
-
-
-
+plt.figure(figsize=(10, 8))
+plt.barh(feature_importances["feature"], feature_importances["importance"], height= 0.6)
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.title("Feature Importances")
+plt.grid(True)
+st.pyplot()
+st.set_option('deprecation.showPyplotGlobalUse', False)
 ####### FAZENDO MATRIZ DE  CONFUSÃO ####
 
 matrix = confusion_matrix (y_teste, predito_ArvoreDecisao)
@@ -112,7 +85,7 @@ sns.heatmap(matrix, annot=True, fmt="d", cbar=False, cmap="Blues")
 plt.title("Matriz de Confusão")
 
 st.pyplot()
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 ################## FAZENDO  PRECISÃO #########
 
