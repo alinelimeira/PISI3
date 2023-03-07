@@ -157,4 +157,23 @@ st.pyplot(fig)
 st.markdown("<p  style = 'font-size: 20px'> Para relação nota x etnia:</p> ", unsafe_allow_html=True)
 
 
-##
+##### nota matematica x etnia 
+
+sns.set_style("whitegrid")
+plt.figure(figsize=(10,6))
+plt.title("Distribuição das notas de matemática por Raça/Etnia", fontsize=16)
+sns.boxplot(data=dados, x="race/ethnicity", y="math percentage")
+plt.xlabel("Raça/Etnia", fontsize=14)
+plt.ylabel("Nota de Matemática", fontsize=14)
+st.pyplot()
+
+
+
+sns.set_style("whitegrid")
+plt.figure(figsize=(10,6))
+plt.title("Distribuição das notas de matemática por nível de educação dos pais", fontsize=16)
+sns.boxplot(data=dados, x="parental level of education", y="math percentage")
+plt.xlabel("Nível de Educação dos Pais", fontsize=14)
+plt.ylabel("Nota de Matemática", fontsize=14)
+
+st.pyplot()
