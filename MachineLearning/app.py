@@ -129,4 +129,32 @@ sns.heatmap(dados.corr(),annot=True, square=True, ax=ax)
 plt.title("Matriz de confusão para as notas", fontsize=20, fontstyle="oblique")
 st.pyplot(fig)
 
+### nota de matematica por genero 
 
+st.markdown("<p  style = 'font-size: 20px'> Para relação nota x gênero:</p> ", unsafe_allow_html=True)
+
+### nota de matematica por genero 
+fig, ax = plt.subplots(figsize=(10,6))
+sns.boxplot(x=dados["sex"], y= dados["math percentage"])
+plt.title("Distribuição da nota de matemática por gênero", fontsize=18)
+st.pyplot(fig)
+
+#### nota leitura por genero 
+fig, ax = plt.subplots(figsize=(10,6))
+sns.boxplot(x=dados["sex"], y= dados["reading score percentage"])
+plt.title("Distribuição da nota de leitura por gênero", fontsize=18)
+st.pyplot(fig)
+
+
+#### nota escrita por genero 
+fig, ax = plt.subplots(figsize=(10,6))
+sns.boxplot(x=dados["sex"], y= dados["writing score percentage"])
+plt.title("Distribuição da nota de escrita por gênero", fontsize=18)
+st.pyplot(fig)
+
+
+
+st.markdown("<p  style = 'font-size: 20px'> Para relação nota x etnia:</p> ", unsafe_allow_html=True)
+
+
+##
