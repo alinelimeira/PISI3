@@ -30,7 +30,7 @@ class FourLearnApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
         //Definindo rotas no APP
-        initialRoute: '/MainScreen',
+        initialRoute: '/',
         routes: {
           '/': (context) => const LoginScreen(),
           '/FirebaseAuth': (context) => const FirebaseAuth(),

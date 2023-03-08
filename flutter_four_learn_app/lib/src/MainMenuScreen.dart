@@ -63,7 +63,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             child: SizedBox(
               height: 45,
               child: PrimaryOutlinedButton(
-                title: 'Forumulário',
+                title: 'Formulário',
                 onPressed: () {
                   Navigator.of(context).pushNamed('/FormularioScreen');
                 },

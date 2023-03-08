@@ -14,22 +14,21 @@ class FormularioScreen extends StatefulWidget {
 class _FormularioScreenState extends State<FormularioScreen> {
   final almoco = ['Reduzido', 'Padrão'];
   final educacaoPais = [
-    'Graduado',
+    'Tecnico',
     'Bacharel',
     'Ensino médio completo',
     'Mestre',
-    'Ensino médio incompleto',
-    'Ensino superior incompleto'
+    'Tecnologo'
   ];
 
   final preparationCourse = ['Completo', 'Incompleto'];
 
-  final etnia = ['Branco', 'Não branco'];
+  final etnia = ['Branco', 'Parda', 'Preta'];
 
   final nota = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   String almocoValue = 'Reduzido';
-  String educacaoPaisValue = 'Graduado';
+  String educacaoPaisValue = 'Tecnico';
   String preparationCourseValue = 'Completo';
   String etniaValue = 'Branco';
   String notaValue = '0';
@@ -105,7 +104,7 @@ class _FormularioScreenState extends State<FormularioScreen> {
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: SizedBox(
                   height: 45,
-                  child: SecondaryButton(title: 'SALVAR', onPressed: () {}),
+                  child: SecondaryButton(title: 'Resultado', onPressed: () {}),
                 ),
               ),
             ),
