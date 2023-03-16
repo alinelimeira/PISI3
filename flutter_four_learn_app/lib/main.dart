@@ -1,8 +1,9 @@
 import 'package:flutter_four_learn_app/src/FomularioScreen.dart';
 import 'package:flutter_four_learn_app/src/LoginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_four_learn_app/src/PomodoroListScreen.dart';
 import 'package:flutter_four_learn_app/src/ProfileScreen.dart';
-import 'src/FirebaseAuth.dart';
+import 'src/FirebaseAuthentication.dart';
 import 'src/RegisterScreen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,11 +34,12 @@ class FourLearnApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => const LoginScreen(),
-          '/FirebaseAuth': (context) => const FirebaseAuth(),
+          '/FirebaseAuth': (context) => const FirebaseAuthenticatio(),
           '/Register': (context) => const RegisterScreen(),
           '/MainScreen': (context) => const MainScreen(),
           '/ProfileScreen': (context) => const ProfileScreen(),
-          '/FormularioScreen': (context) => const FormularioScreen()
+          '/FormularioScreen': (context) => const FormularioScreen(),
+          '/PomodoroListScreen': (context) => const PomodoroListScreen()
         });
   }
 }
