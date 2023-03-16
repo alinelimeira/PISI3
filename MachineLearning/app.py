@@ -124,10 +124,11 @@ st.title("Analisando os dados com gráficos de duas variáveis")
 
 ##### Matriz de correlacao dos dados numericos
 palette = sns.diverging_palette(250, 15, s=75, l=40, n=9, center='light', as_cmap=True)
-fig, ax = plt.subplots(figsize=(16,9))
+fig, ax = plt.subplots()
 sns.heatmap(dados.corr(), cmap=palette, center=0, annot=True, ax=ax)
-plt.title("Headmap de correlação para as notas", fontsize=20, fontstyle="oblique")
+ax.set_title('Heatmap de Correlação')
 st.pyplot(fig)
+
 
 ### nota de matematica por genero 
 
