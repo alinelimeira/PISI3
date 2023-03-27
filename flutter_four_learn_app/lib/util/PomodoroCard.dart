@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_four_learn_app/src/FirebaseAuthentication.dart';
-import 'package:flutter_four_learn_app/src/Pomodoro.dart';
+import 'package:flutter_four_learn_app/src/obj/Pomodoro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_four_learn_app/src/PomodoroScreen.dart';
@@ -35,6 +32,7 @@ class _PomodoroCardState extends State<PomodoroCard> {
                           name: '${widget._pomodoro.nome}',
                           tempoFoco: widget._pomodoro.tempoFoco,
                           tempoDescanso: widget._pomodoro.tempoDescanso,
+                          ciclo: widget._pomodoro.ciclos,
                         )));
           },
           child: Padding(

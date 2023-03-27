@@ -1,10 +1,14 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_four_learn_app/src/Pomodoro.dart';
+import 'package:flutter_four_learn_app/src/obj/Pomodoro.dart';
 import 'package:flutter_four_learn_app/util/PomodoroCard.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_four_learn_app/util/pomodoroCreateField.dart';
 
 class PomodoroListScreen extends StatefulWidget {
   const PomodoroListScreen({super.key});
@@ -14,18 +18,8 @@ class PomodoroListScreen extends StatefulWidget {
 }
 
 var uid = FirebaseAuth.instance.currentUser!.uid;
-Stream collectionStream =
-    FirebaseFirestore.instance.collection('users').snapshots();
-Stream documentStream = FirebaseFirestore.instance
-    .collection('users')
-    .doc(uid)
-    .collection('pomodoro')
-    .snapshots();
 
 class _PomodoroListScreenState extends State<PomodoroListScreen> {
-  final Stream<QuerySnapshot> _userStream =
-      FirebaseFirestore.instance.collection('users').snapshots();
-
   List<Object> _listPomodoro = [];
 
   @override
@@ -54,6 +48,8 @@ class _PomodoroListScreenState extends State<PomodoroListScreen> {
           return PomodoroCard(_listPomodoro[index] as Pomodoro);
         },
       )),
+      floatingActionButton: PomodoroCreateField(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

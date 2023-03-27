@@ -105,6 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: BlockedButton(
                     title: 'SAIR',
                     onPressed: () async {
+                      FirebaseAuth.instance.signOut();
                       Navigator.of(context).pushNamed('/');
                     }))
           ],
