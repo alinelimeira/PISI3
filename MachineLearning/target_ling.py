@@ -106,6 +106,38 @@ df_metrics = pd.DataFrame(report).transpose()
 st.table(df_metrics)
 
 
+
+#######LINEARSVC
+
+st.subheader("Utilizando o LinearSVC:")
+
+norm = StandardScaler() 
+X_normalizado = norm.fit_transform(X_sem_nota_mat)
+
+
+SEED = 5
+np.random.seed(SEED)
+treino_x, teste_x, treino_y, teste_y = train_test_split (X_sem_nota_mat,y_sem_nota_mat, random_state = SEED, test_size = 0.30,stratify = y_sem_nota_mat)
+
+model = LinearSVC()
+model.fit(treino_x, treino_y)
+prev_linear = model.predict(teste_x)
+
+cm = confusion_matrix (y_teste, prev_linear)
+st.write("Matriz de confusão do LinearSVC", cm)
+
+st.write("Métricas do LinearSVC:")
+report = classification_report(teste_y, prev_linear, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
+
+
+
+
+
+
+
+
 #### XGBoost sem a nota_matematica
 st.subheader("Utilizando o XGBoost sem a nota_matematica:")
 
