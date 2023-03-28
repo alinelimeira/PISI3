@@ -3,11 +3,13 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import xgboost as xgb
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.dummy import DummyClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import classification_report
 from sklearn.metrics import precision_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
@@ -18,8 +20,8 @@ import estudo_dos_dados
 dados = estudo_dos_dados.dados
 
 
-st.markdown ("<p style = 'font-size: 20px'> Iniciando o algoritmo Árvore de Decisão </p>", unsafe_allow_html=True)
-st.write("Analisando a variável nota_matematica ")
+st.markdown ("<p style = 'font-size: 20px'> Iniciando a análise com os algoritmos </p>", unsafe_allow_html=True)
+st.write("Variável nota_matematica como target")
 fig, ax = plt.subplots()
 ax = sns.countplot(x = 'nota_matematica', data = dados)
 #ax.figure.set_size_inches(12, 10)
@@ -82,25 +84,15 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 ####### FAZENDO MATRIZ DE  CONFUSÃO ####
 
 matrix = confusion_matrix (y_teste, predito_ArvoreDecisao)
-plt.figure(figsize=(8,4))
-sns.heatmap(matrix, annot=True, fmt="d", cbar=False, cmap="Blues")
-plt.title("Matriz de Confusão")
+st.write("Matriz de confusão da Árvore de Decisão", matrix)
 
-st.pyplot()
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
-################## FAZENDO  PRECISÃO #########
-
-precisao = precision_score(y_teste, predito_ArvoreDecisao) * 100
-
-############## Fazendo acurácia 
-
-acuracia = accuracy_score(y_teste, predito_ArvoreDecisao)*100
-
-st.markdown(f'  Tendo uma precisão de {precisao:.0f}% e acurácia de {acuracia:.0f}%', unsafe_allow_html=True)
+st.subheader("Para a Árvore de Decisão:")
+report = classification_report(y_teste, predito_ArvoreDecisao, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
 
 
-
+###DUMMY CLASSIFIER
 SEED = 5
 np.random.seed(SEED)
 X_treino, X_teste, y_treino, y_teste = train_test_split (X,y,random_state = SEED, test_size = 0.30,stratify = y)
@@ -162,20 +154,16 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
-####### FAZENDO MATRIZ DE  CONFUSÃO ####
+####### FAZENDO MATRIZ DE  CONFUSÃO E METRICAS DA ARVORE SEM A NOTA_LINGUAGEM####
 
-matrix = confusion_matrix (y_teste, prediction_ArvoreDecisao)
-plt.figure(figsize=(8,4))
-sns.heatmap(matrix, annot=True, fmt="d", cbar=False, cmap="Blues")
-plt.title("Matriz de Confusão da Árvore sem variável linguagem")
+matriz = confusion_matrix (y_teste, prediction_ArvoreDecisao)
+st.write("Matriz de confusão da Árvore de Decisão sem a nota_linguagem", matriz)
+st.write("Para a Árvore de Decisão sem a nota_linguagem:")
+report = classification_report(y_teste, prediction_ArvoreDecisao, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
 
-st.pyplot()
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
-precision = precision_score(y_teste, prediction_ArvoreDecisao) * 100 
-accuracy = accuracy_score(y_teste, prediction_ArvoreDecisao)*100
-
-st.markdown(f' Tendo a Árvore de Decisão uma precisão de {precision:.0f}% e acurácia de {accuracy:.0f}%', unsafe_allow_html=True)
 
 ####DUMMMY CLASSIFIER
 SEED = 5
@@ -190,9 +178,10 @@ st.markdown(f' O classificador Dummy resultou numa acurácia de: {acuracia_dummy
 
 
 
-st.markdown("<p style = 'font-size: 20px'>Como na Árvore a precisão e a acurácia deu valores baixos, foi necessário analisar com outros algoritmos: </p>", unsafe_allow_html=True)
-
 ####################### LINEAR SVC ######################
+st.subheader("Como na Árvore a precisão e a acurácia deu valores baixos, foi necessário analisar com outros algoritmos:")
+st.subheader("Utilizando o LinearSVC:")
+
 norm = StandardScaler() 
 X_normalizado = norm.fit_transform(X_sem_nota_linguagem)
 
@@ -207,18 +196,6 @@ previsoes = model.predict(teste_x)
 acuracia = accuracy_score(teste_y, previsoes)*100
 precisao = precision_score(teste_y, previsoes)*100
 
-st.markdown(f'Pelo LinearSVC uma precisão de {precisao:.0f}% e acurácia de {acuracia:.0f}%', unsafe_allow_html=True)
-
-
-####### FAZENDO MATRIZ DE  CONFUSÃO DO LINEAR SVC  #######
-
-cm = confusion_matrix (y_teste, previsoes)
-fig, ax = plt.subplots()
-sns.heatmap(cm, annot=True, fmt="d", cbar=False, cmap="Blues")
-plt.title("Matriz de Confusão do LinearSVC")
-
-st.pyplot(fig)
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 ###### feature importance da linearsvc
@@ -233,3 +210,37 @@ ax.set_ylabel('Recurso')
 ax.set_title('Importância dos recursos com o LinearSVC')
 plt.grid(True)
 st.pyplot(fig)
+
+cm = confusion_matrix (y_teste, previsoes)
+st.write("Matriz de confusão do LinearSVC", cm)
+
+st.write("Métricas do LinearSVC:")
+pred_y = model.predict(teste_x)
+report = classification_report(teste_y, pred_y, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
+
+
+
+#### XGBOOST SEM A NOTA_LINGUAGEM 
+norm = StandardScaler() 
+X_normalizado = norm.fit_transform(X_sem_nota_linguagem)
+
+X_train, X_test, y_train, y_test = train_test_split(X_normalizado, y_sem_nota_linguagem, test_size = 0.3, random_state = 1121218)
+xgb_cl = xgb.XGBClassifier()
+
+xgb_cl.fit(X_train,y_train)
+preds = xgb_cl.predict(X_test)
+
+st.subheader("Para o algoritmo XGBoost sem a nota_linguagem:")
+
+
+
+#Matriz de confusao 
+matriz_conf = confusion_matrix(y_test, preds)
+st.write("Matriz de confusão do XGBoost:", matriz_conf)
+
+st.write("Métricas do XGBoost:")
+report = classification_report(y_test, preds, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
