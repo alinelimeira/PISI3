@@ -123,7 +123,7 @@ model = LinearSVC()
 model.fit(treino_x, treino_y)
 prev_linear = model.predict(teste_x)
 
-cm = confusion_matrix (y_teste, prev_linear)
+cm = confusion_matrix (teste_y, prev_linear)
 st.write("Matriz de confusão do LinearSVC", cm)
 
 st.write("Métricas do LinearSVC:")
