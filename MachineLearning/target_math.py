@@ -193,10 +193,6 @@ treino_x, teste_x, treino_y, teste_y = train_test_split (X_sem_nota_linguagem,y_
 model = LinearSVC()
 model.fit(treino_x, treino_y)
 previsoes = model.predict(teste_x)
-acuracia = accuracy_score(teste_y, previsoes)*100
-precisao = precision_score(teste_y, previsoes)*100
-
-
 
 ###### feature importance da linearsvc
 importances = pd.DataFrame({'feature': X_sem_nota_linguagem.columns, 'importance': abs(model.coef_[0])})
@@ -211,12 +207,11 @@ ax.set_title('Importância dos recursos com o LinearSVC')
 plt.grid(True)
 st.pyplot(fig)
 
-cm = confusion_matrix (y_teste, previsoes)
+cm = confusion_matrix (teste_y, previsoes)
 st.write("Matriz de confusão do LinearSVC", cm)
 
 st.write("Métricas do LinearSVC:")
-pred_y = model.predict(teste_x)
-report = classification_report(teste_y, pred_y, output_dict = True)
+report = classification_report(teste_y, previsoes, output_dict = True)
 df_metrics = pd.DataFrame(report).transpose()
 st.table(df_metrics)
 
