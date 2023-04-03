@@ -79,8 +79,8 @@ dados_final['nota_escrita_leitura'] = dados_final['nota_escrita_leitura'].round(
 #colocando a math_percentage e average_score_languages em categótica
 
 
-dados_final['nota_matematica'] = (dados_final['math_percentage'] > 0.7).astype(int)
-dados_final['nota_linguagem'] = (dados_final['nota_escrita_leitura'] > 0.7).astype(int)
+dados_final['nota_matematica'] = (dados_final['math_percentage'] >= 0.7).astype(int)
+dados_final['nota_linguagem'] = (dados_final['nota_escrita_leitura'] >= 0.7).astype(int)
 
 #APAGANDO AS COLUNAS QUE RESTARAM COM DADOS DECIMAIS
 dados_final = dados_final.drop(['math_percentage','nota_escrita_leitura' ,'reading_score_percentage','writing_score_percentage'], axis=1)
