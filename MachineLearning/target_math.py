@@ -70,7 +70,7 @@ predito_ArvoreDecisao = dtc.predict(X_teste)
 
 importances = dtc.feature_importances_
 feature_importances = pd.DataFrame({"feature": X.columns, "importance": importances})
-feature_importances = feature_importances.sort_values("importance", ascending=False)
+feature_importances = feature_importances.sort_values("importance", ascending=True)
 #st.dataframe(feature_importances)
 
 plt.figure(figsize=(10, 8))
@@ -140,7 +140,7 @@ prediction_ArvoreDecisao = clf.predict(X_teste)
 
 importances = clf.feature_importances_
 feature_importances = pd.DataFrame({"feature": X_sem_nota_linguagem.columns, "importance": importances})
-feature_importances = feature_importances.sort_values("importance", ascending=False)
+feature_importances = feature_importances.sort_values("importance", ascending=True)
 #st.dataframe(feature_importances)
 
 plt.figure(figsize=(10, 8))
@@ -196,7 +196,7 @@ previsoes = model.predict(teste_x)
 
 ###### feature importance da linearsvc
 importances = pd.DataFrame({'feature': X_sem_nota_linguagem.columns, 'importance': abs(model.coef_[0])})
-importances = importances.sort_values(by='importance', ascending=False)
+importances = importances.sort_values(by='importance', ascending=True)
 
 # Plota o gráfico de barras
 fig, ax = plt.subplots(figsize=(10, 6))

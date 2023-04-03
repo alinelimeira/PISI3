@@ -41,7 +41,7 @@ pred_arvore = dtc.predict(X_teste)
 st.subheader("Feature Importance de acordo com a Árvore de decisão")
 importances = dtc.feature_importances_
 feature_importances = pd.DataFrame({"feature": X.columns, "importance": importances})
-feature_importances = feature_importances.sort_values("importance", ascending=False)
+feature_importances = feature_importances.sort_values("importance", ascending=True)
 fig, ax = plt.subplots(figsize=(10, 6))
 plt.barh(feature_importances["feature"], feature_importances["importance"], height= 0.6)
 plt.xlabel("Importance")
@@ -88,7 +88,7 @@ predic_arv= clt.predict(X_tst)
 st.write("Feature Importance de acordo com a Árvore de decisão")
 importances = clt.feature_importances_
 feature_importances = pd.DataFrame({"feature": X_sem_nota_mat.columns, "importance": importances})
-feature_importances = feature_importances.sort_values("importance", ascending=False)
+feature_importances = feature_importances.sort_values("importance", ascending=True)
 fig, ax = plt.subplots(figsize=(10, 6))
 plt.barh(feature_importances["feature"], feature_importances["importance"], height= 0.6)
 plt.xlabel("Importance")
@@ -131,8 +131,17 @@ report = classification_report(teste_y, prev_linear, output_dict = True)
 df_metrics = pd.DataFrame(report).transpose()
 st.table(df_metrics)
 
+importances = pd.DataFrame({'feature': X_sem_nota_mat.columns, 'importance': abs(model.coef_[0])})
+importances = importances.sort_values(by='importance', ascending=True)
 
-
+# Plota o gráfico de barras
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.barh(importances['feature'], importances['importance'])
+ax.set_xlabel('Importância')
+ax.set_ylabel('Recurso')
+ax.set_title('Importância dos recursos com o LinearSVC')
+plt.grid(True)
+st.pyplot(fig)
 
 
 
