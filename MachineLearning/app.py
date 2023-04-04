@@ -176,5 +176,10 @@ plt.title("Distribuição das notas de matemática por nível de educação dos 
 sns.boxplot(data=dados, x="parental level of education", y="math percentage", color = (0,1,1,1))
 plt.xlabel("Nível de Educação dos Pais", fontsize=14)
 plt.ylabel("Nota de Matemática", fontsize=14)
-
 st.pyplot()
+
+###pairplot das notas
+numeric_cols = dados.select_dtypes(include=['float', 'int']).columns
+st.write('Gráfico Pairplot das variáveis notas')
+fig = sns.pairplot(dados)
+st.pyplot(fig)
