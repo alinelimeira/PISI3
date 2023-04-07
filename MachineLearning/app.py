@@ -47,6 +47,11 @@ st.markdown("Group E: Mixed - White and Black African ")
 dados = pd.read_csv("MachineLearning/dataset/Student_Performance_new.csv")
 dados = dados.drop(columns=['Unnamed: 0'])
 
+dados['nota_matematica'] = (dados['math percentage'] >= 0.5).astype(int)
+dados['nota_linguagem'] = dados[['reading score percentage','writing score percentage']].mean(axis=1)
+dados['nota_linguagem'] = (dados['nota_linguagem'] >= 0.5).astype(int)
+
+
 st.markdown(" <p style = 'font-size: 20px' >Dataset: </p> ", unsafe_allow_html=True)
 st.dataframe(dados)  # comando q aparece toda a tabela
 
@@ -230,6 +235,43 @@ sns.move_legend(a, "upper left", bbox_to_anchor=(0, 1))
 sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
 sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
 st.pyplot(fig)
+
+
+#quantidade de quem tirou >= 5 ou >5 em matematica 
+
+counts = dados['nota_matematica'].value_counts()
+colors = ['#4688e3', '#d44242']
+labels = [' Maior ou igual a 5', 'Menor que 5']
+fig, ax = plt.subplots(figsize =(10,6))
+plt.pie(counts, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
+plt.axis('equal')
+plt.title('Porcentagem de alunos que tiraram notas maiores ou iguais 5 ou menores 5 em Matemática', fontsize=12)
+plt.legend(title='Notas',loc='upper right' )
+st.pyplot(fig)
+
+
+
+#quantidade de quem tirou >= 5 ou >5 em nota_linguagem
+st.markdown("Para calcular a nota de Linguagem, calculou-se a médias das notas de Leitura e Escrita") 
+
+counts = dados['nota_linguagem'].value_counts()
+colors = ['#4688e3', '#d44242']
+labels = [' Maior ou igual a 5', 'Menor que 5']
+fig, ax = plt.subplots(figsize =(10,6))
+plt.pie(counts, colors=colors, labels=labels, autopct='%1.1f%%', startangle=90)
+plt.axis('equal')
+plt.title('Porcentagem de alunos que tiraram notas maiores ou iguais a 5 ou menores que 5 em Linguagem', fontsize=12)
+plt.legend(title='Notas',loc='upper right' )
+st.pyplot(fig)
+
+
+
+
+
+
+
+
+
 
 
 
