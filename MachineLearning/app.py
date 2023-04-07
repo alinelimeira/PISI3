@@ -273,5 +273,5 @@ st.pyplot(fig)
 st.write('Gráfico Pairplot das variáveis notas')
 colors = ['#D2103C', '#00ACEE']
 columns = ["math percentage", "writing score percentage", "reading score percentage", "sex"]
-fig = sns.pairplot(data=df[columns], hue = "sex", palette = colors )
+fig = sns.pairplot(data=dados[columns], hue = "sex", palette = colors )
 st.pyplot(fig)
