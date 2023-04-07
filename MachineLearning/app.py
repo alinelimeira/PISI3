@@ -11,15 +11,43 @@ import matplotlib.cm as cm
 #informacoes no head da pagina
 st.set_page_config(page_title='Analise de dados', page_icon=':bar_chart')
 st.title("Análise de dados")
-st.subheader("Esta página tem como objetivo mostrar a analise dos dados do dataset Students Performance in Exams")
+st.subheader("Esta página tem como objetivo mostrar a análise dos dados do dataset Students Performance in Exams")
+
+st.markdown("<span style='font-size:22px;font-weight:bold'>Dicionário</span>", unsafe_allow_html=True)
+
+st.markdown("<p  style = 'font-size: 20px'>Nível de educação dos pais:</p> ", unsafe_allow_html=True)
+st.markdown("Master, Some College, Associate, High School, Some High School") 
+
+st.markdown("<p  style = 'font-size: 20px'>Gênero:</p> ", unsafe_allow_html=True)
+st.markdown("M: Masculino")
+st.markdown("F: Feminino")
+
+st.markdown("<p  style = 'font-size: 20px'>Notas das Disciplinas:</p> ", unsafe_allow_html=True)
+st.markdown("Math percentage : nota Matemática")
+st.markdown("Reading score percentage: nota Leitura")
+st.markdown("Writing score percentage: nota Escrita")
+
+st.markdown("<p  style = 'font-size: 20px'>Tipo de almoço:</p> ", unsafe_allow_html=True)
+st.markdown("Standard: Padrão")
+st.markdown("Free/reduced: Gratuito/reduzido")
+
+
+st.markdown("<p  style = 'font-size: 20px'> Cada grupo de etnia é separado da seguinte forma:</p> ", unsafe_allow_html=True)
+st.markdown("Group A: White - British") 
+st.markdown("Group B: White - Irish") 
+st.markdown("Group C: White - White - Any other white background") 
+st.markdown("Group D: Mixed - White and Black Caribbean") 
+st.markdown("Group E: Mixed - White and Black African ") 
+
 
 #SIDEBAR 
-classifier_name = st.sidebar.selectbox("Selecione um classificador", ("Árvore de decisão", "Bernoulli","KNN"))
+
 
 # ! mudar o diretorio quando for testar para cloud para  "MachineLearning/dataset/Student_Performance_new.csv" ou ../MachineLearning/dataset/Student_Performance_new.csv
 dados = pd.read_csv("MachineLearning/dataset/Student_Performance_new.csv")
 dados = dados.drop(columns=['Unnamed: 0'])
 
+st.markdown(" <p style = 'font-size: 20px' >Dataset: </p> ", unsafe_allow_html=True)
 st.dataframe(dados)  # comando q aparece toda a tabela
 
 st.markdown(" <p style = 'font-size: 20px' >Tipos das colunas: </p> ", unsafe_allow_html=True)
@@ -190,6 +218,18 @@ sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
 sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
 st.pyplot(fig)
 
+
+#Nota x etnia
+
+fig,ax=plt.subplots(ncols=3, figsize=(30,10))
+fig.suptitle('Distribuição das notas em relação as Etnias',size=30)
+a=sns.kdeplot(data=df,x='math percentage',ax=ax[0], hue='race/ethnicity')
+b= sns.kdeplot(data=df, x='reading score percentage', ax=ax[1], hue='race/ethnicity')
+c= sns.kdeplot(data=df, x='writing score percentage', ax=ax[2], hue='race/ethnicity')
+sns.move_legend(a, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
+st.pyplot(fig)
 
 
 
