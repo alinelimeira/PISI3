@@ -178,6 +178,27 @@ plt.xlabel("Nível de Educação dos Pais", fontsize=14)
 plt.ylabel("Nota de Matemática", fontsize=14)
 st.pyplot()
 
+##Nota por tipo de almoco
+
+fig, ax=plt.subplots(ncols=3,figsize=(22,10))
+fig.suptitle('Distribuição das notas baseada no tipo do almoço',size=25)
+a=sns.histplot(dados,x='math percentage',ax=ax[0], hue='lunch',element='step')
+b=sns.histplot(dados,x='reading score percentage',ax=ax[1],hue='lunch',element='step')
+c=sns.histplot(dados,x='writing score percentage',ax=ax[2],hue='lunch',element='step')
+sns.move_legend(a, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
+st.pyplot(fig)
+
+
+
+
+
+
+
+
+
+
 ###pairplot das notas
 numeric_cols = dados.select_dtypes(include=['float', 'int']).columns
 st.write('Gráfico Pairplot das variáveis notas')
