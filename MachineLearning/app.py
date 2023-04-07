@@ -169,20 +169,23 @@ st.markdown("<p  style = 'font-size: 20px'> Para relação nota x gênero:</p> "
 
 ### nota de matematica por genero 
 fig, ax = plt.subplots(figsize=(10,6))
-sns.boxplot(x=dados["sex"], y= dados["math percentage"])
+colors = ['#D2103C', '#00ACEE']
+sns.boxplot(x=dados["sex"], y= dados["math percentage"], palette = colors)
 plt.title("Distribuição da nota de matemática por gênero", fontsize=18)
 st.pyplot(fig)
 
 #### nota leitura por genero 
 fig, ax = plt.subplots(figsize=(10,6))
-sns.boxplot(x=dados["sex"], y= dados["reading score percentage"])
+colors = ['#D2103C', '#00ACEE']
+sns.boxplot(x=dados["sex"], y= dados["reading score percentage"], palette = colors)
 plt.title("Distribuição da nota de leitura por gênero", fontsize=18)
 st.pyplot(fig)
 
 
 #### nota escrita por genero 
 fig, ax = plt.subplots(figsize=(10,6))
-sns.boxplot(x=dados["sex"], y= dados["writing score percentage"])
+colors = ['#D2103C', '#00ACEE']
+sns.boxplot(x=dados["sex"], y= dados["writing score percentage"], palette = colors)
 plt.title("Distribuição da nota de escrita por gênero", fontsize=18)
 st.pyplot(fig)
 
@@ -266,18 +269,9 @@ st.pyplot(fig)
 
 
 
-
-
-
-
-
-
-
-
-
-
 ###pairplot das notas
-numeric_cols = dados.select_dtypes(include=['float', 'int']).columns
 st.write('Gráfico Pairplot das variáveis notas')
-fig = sns.pairplot(dados)
+colors = ['#D2103C', '#00ACEE']
+columns = ["math percentage", "writing score percentage", "reading score percentage", "sex"]
+fig = sns.pairplot(data=df[columns], hue = "sex", palette = colors )
 st.pyplot(fig)
