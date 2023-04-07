@@ -223,18 +223,13 @@ st.pyplot(fig)
 
 fig,ax=plt.subplots(ncols=3, figsize=(30,10))
 fig.suptitle('Distribuição das notas em relação as Etnias',size=30)
-a=sns.kdeplot(data=df,x='math percentage',ax=ax[0], hue='race/ethnicity')
-b= sns.kdeplot(data=df, x='reading score percentage', ax=ax[1], hue='race/ethnicity')
-c= sns.kdeplot(data=df, x='writing score percentage', ax=ax[2], hue='race/ethnicity')
+a=sns.kdeplot(data=dados,x='math percentage',ax=ax[0], hue='race/ethnicity')
+b= sns.kdeplot(data=dados, x='reading score percentage', ax=ax[1], hue='race/ethnicity')
+c= sns.kdeplot(data=dados, x='writing score percentage', ax=ax[2], hue='race/ethnicity')
 sns.move_legend(a, "upper left", bbox_to_anchor=(0, 1))
 sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
 sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
 st.pyplot(fig)
-
-
-
-
-
 
 
 
