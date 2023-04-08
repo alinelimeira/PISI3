@@ -111,7 +111,8 @@ st.markdown("Group E: Mixed - White and Black African ")
 st.markdown("<p style = 'font-size: 20px' > Verificando a quantidade do nivel educacional dos pais dos estudantes: </p> ", unsafe_allow_html=True)
 
 fig, ax = plt.subplots(figsize=(10,6))
-sns.countplot(x = "parental level of education", data = dados, ax = ax)
+colors = ["#FF5733", "#5F9EA0", "#9B59B6", "#3498DB", "#2ECC71", "#EEB600"]
+sns.countplot(x = "parental level of education", data = dados, ax = ax, palette=colors)
 plt.title("Relação quantidade e nivel de educação dos pais", fontsize = 14)
 ax.set_xlabel("Educação")
 ax.set_ylabel("Quantidade")
@@ -270,8 +271,38 @@ st.pyplot(fig)
 
 
 ###pairplot das notas
-st.write('Gráfico Pairplot das variáveis notas')
+st.write('Gráfico Pairplot das variáveis notas em relação ao gênero')
 colors = ['#D2103C', '#00ACEE']
 columns = ["math percentage", "writing score percentage", "reading score percentage", "sex"]
 fig = sns.pairplot(data=dados[columns], hue = "sex", palette = colors )
+st.pyplot(fig)
+
+
+###NOTA X TESTE PRESPARACAO
+
+fig, ax=plt.subplots(ncols=3,figsize=(30,10))
+fig.suptitle('Distribuição das notas em relação ao teste de preparação',size=25)
+colors = ["#e00f4a", "#0f1be0"]
+a=sns.histplot(dados,x='math percentage',ax=ax[0], hue='test preparation course',element='step', palette=colors)
+b=sns.histplot(dados,x='reading score percentage',ax=ax[1],hue='test preparation course',element='step', palette=colors)
+c=sns.histplot(dados,x='writing score percentage',ax=ax[2],hue='test preparation course',element='step', palette=colors)
+
+sns.move_legend(a, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
+st.pyplot(fig)
+
+
+#Nivel de educação dos pais X  NOTAS
+
+fig, ax=plt.subplots(ncols=3, figsize=(30,10))
+fig.suptitle('Distribuição das notas em relação ao nível educacional dos pais', fontsize=18)
+colors = ["#FF5733", "#5F9EA0", "#9B59B6", "#3498DB", "#2ECC71", "#EEB600"]
+
+a=sns.kdeplot(data=dados,x='math percentage',ax=ax[0], hue='parental level of education', palette=colors)
+b= sns.kdeplot(data=dados, x='reading score percentage', ax=ax[1], hue='parental level of education', palette=colors)
+c= sns.kdeplot(data=dados, x='writing score percentage', ax=ax[2], hue='parental level of education', palette=colors)
+sns.move_legend(a, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
+sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
 st.pyplot(fig)
