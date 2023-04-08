@@ -292,7 +292,6 @@ sns.move_legend(b, "upper left", bbox_to_anchor=(0, 1))
 sns.move_legend(c, "upper left", bbox_to_anchor=(0, 1))
 st.pyplot(fig)
 
-
 #Nivel de educação dos pais X  NOTAS
 
 fig, ax=plt.subplots(ncols=3, figsize=(30,10))
