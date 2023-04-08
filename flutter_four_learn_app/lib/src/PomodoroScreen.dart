@@ -101,7 +101,7 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
             children: [
               Text(
                 "${_cicloAtual}/${widget.ciclo}",
-                style: TextStyle(fontSize: 36),
+                style: TextStyle(fontSize: 36, color: Colors.white),
               )
             ],
           ),
@@ -111,7 +111,7 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
             children: [
               Text(
                 "${f.format(_minutes)} : ${f.format(_seconds)}",
-                style: TextStyle(fontSize: 48),
+                style: TextStyle(fontSize: 48, color: Colors.white),
               )
             ],
           ),
