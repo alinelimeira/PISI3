@@ -297,7 +297,6 @@ st.pyplot(fig)
 fig, ax=plt.subplots(ncols=3, figsize=(30,10))
 fig.suptitle('Distribuição das notas em relação ao nível educacional dos pais', fontsize=18)
 colors = ["#FF5733", "#5F9EA0", "#9B59B6", "#3498DB", "#2ECC71", "#EEB600"]
-
 a=sns.kdeplot(data=dados,x='math percentage',ax=ax[0], hue='parental level of education', palette=colors)
 b= sns.kdeplot(data=dados, x='reading score percentage', ax=ax[1], hue='parental level of education', palette=colors)
 c= sns.kdeplot(data=dados, x='writing score percentage', ax=ax[2], hue='parental level of education', palette=colors)
