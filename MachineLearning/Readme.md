@@ -3,3 +3,4 @@
 **app.py:** Contém os gráficos dos dados brutos.
 **target_ling.py:** Contém os algoritmos com target nota Linguagem, com nota referente a valor 7.
 **target_math.py:** Contém os algoritmos com target nota Matemática, com nota referente a valor 7.
+**analisenota5.py:** Contém os algoritmos de LinearSVC, com target nota Matemática e de Linguagem, com nota referente ao valor 5.
