@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.dummy import DummyClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report
 from sklearn.metrics import precision_score
@@ -166,5 +167,48 @@ st.write("Matriz  de Confusão do LinearSVC em relação a nota 5, target nota_l
 
 st.write("Para o LinearSVC, target nota_linguagem:")
 report = classification_report(y_teste, prev_linear, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
+
+###################### KNN ################
+#KNN PARA MATEMATICA
+
+X = dados_final.drop('nota_matematica', axis = 1)
+y = dados_final['nota_matematica']
+
+norma = StandardScaler()
+X_norma = norma.fit_transform(X)
+
+X_train, X_test, y_train, y_test = train_test_split(X_norma, y, test_size = 0.3, random_state = 123)
+#INSTANCIAR o modelo por padrão são 5 vizinhos
+knn = KNeighborsClassifier(metric = 'euclidean')
+knn.fit(X_train, y_train)
+
+predicao_knn = knn.predict(X_test)
+mtrx = confusion_matrix (y_test, predicao_knn)
+st.write("Matriz  de Confusão do knn em relação a nota 5, target nota_matematica",mtrx)
+
+st.write("Para o knn, target nota_matematica:")
+report = classification_report(y_test, predicao_knn, output_dict = True)
+df_metrics = pd.DataFrame(report).transpose()
+st.table(df_metrics)
+
+### para linguagem
+X = dados.drop('nota_linguagem', axis = 1)
+y = dados['nota_linguagem']
+
+norm= StandardScaler()
+X_norm = norm.fit_transform(X)
+X_train, X_test, y_train, y_test = train_test_split(X_norm, y, test_size = 0.3, random_state = 123)
+
+knn = KNeighborsClassifier(metric = 'euclidean')
+knn.fit(X_train, y_train)
+predicao_knnlin = knn.predict(X_test)
+
+mx = confusion_matrix (y_test, predicao_knnlin)
+st.write("Matriz  de Confusão do knn em relação a nota 5, target nota_linguagem",mx)
+
+st.write("Para o knn, target nota_linguagem:")
+report = classification_report(y_test, predicao_knnlin, output_dict = True)
 df_metrics = pd.DataFrame(report).transpose()
 st.table(df_metrics)
