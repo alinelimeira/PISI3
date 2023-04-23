@@ -29,7 +29,7 @@ class CodexScreen extends StatelessWidget {
 
   static List<charts.Series<dynamic, String>> createSampleData() {
     final data = [
-      PomosCiclos('psb', 3), //TODO ajuda para ajustar com o firebase
+      PomosCiclos('psb', 3) //TODO ajuda para ajustar com o firebase
     ];
 
     return [
