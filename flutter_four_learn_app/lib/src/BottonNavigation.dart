@@ -8,6 +8,8 @@ import 'package:flutter_four_learn_app/src/MainMenuScreen.dart';
 import 'package:flutter_four_learn_app/src/ProfileScreen.dart';
 import 'package:flutter_four_learn_app/src/PomodoroListScreen.dart';
 
+import 'CodexScreen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -36,7 +38,12 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: PageView(
         controller: pc,
-        children: [MainMenuScreen(), ProfileScreen(), PomodoroListScreen()],
+        children: [
+          MainMenuScreen(),
+          ProfileScreen(),
+          PomodoroListScreen(),
+          CodexScreen(CodexScreen.createSampleData())
+        ],
         onPageChanged: setScreenAtual,
       ),
       bottomNavigationBar: Container(
@@ -47,7 +54,8 @@ class _MainScreenState extends State<MainScreen> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.house), label: 'Menu'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
-            BottomNavigationBarItem(icon: Icon(Icons.timer), label: 'Pomodoro')
+            BottomNavigationBarItem(icon: Icon(Icons.timer), label: 'Pomodoro'),
+            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'FocusCodex')
           ],
           onTap: (screen) {
             pc.animateToPage(screen,
