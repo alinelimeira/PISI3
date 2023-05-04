@@ -67,6 +67,7 @@ a_renomear = {
 
 
 dados_final = dados_final.rename(columns = a_renomear)
+dados_final.to_csv('dados_final.csv')
 
 #writing_score_percentage e reading_score_percentage estão em valores separados, entao eh necessario fazer uma media das duas notas
 #atravez do mean ()
