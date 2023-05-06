@@ -3,6 +3,7 @@ import 'package:flutter_four_learn_app/src/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_four_learn_app/src/PomodoroListScreen.dart';
 import 'package:flutter_four_learn_app/src/ProfileScreen.dart';
+import 'package:flutter_four_learn_app/src/StudyTime.dart';
 import 'src/FirebaseAuthentication.dart';
 import 'src/RegisterScreen.dart';
 import 'firebase_options.dart';
@@ -39,7 +40,8 @@ class FourLearnApp extends StatelessWidget {
           '/MainScreen': (context) => const MainScreen(),
           '/ProfileScreen': (context) => const ProfileScreen(),
           '/FormularioScreen': (context) => const FormularioScreen(),
-          '/PomodoroListScreen': (context) => const PomodoroListScreen()
+          '/PomodoroListScreen': (context) => const PomodoroListScreen(),
+          '/StudyTimeScreen': (context) => const StudyTime()
         });
   }
 }

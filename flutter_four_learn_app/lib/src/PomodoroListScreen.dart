@@ -3,11 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_four_learn_app/src/obj/Pomodoro.dart';
 import 'package:flutter_four_learn_app/util/PomodoroCard.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_four_learn_app/util/pomodoroCreateField.dart';
 
 class PomodoroListScreen extends StatefulWidget {

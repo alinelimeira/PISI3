@@ -64,7 +64,9 @@ class _PomodoroCreateFieldState extends State<PomodoroCreateField> {
                           'tempoDescanso':
                               int.parse(tempoDescansoControler.text),
                           'tempoFoco': int.parse(tempoFocoControler.text),
-                          'ciclos': int.parse(cicloControler.text)
+                          'ciclos': int.parse(cicloControler.text),
+                          'ciclosEstudados': 0,
+                          'tempoEstudoMinutos': 0,
                         });
 
                         Navigator.of(context).pop();

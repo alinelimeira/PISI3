@@ -1,12 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_four_learn_app/src/MainMenuScreen.dart';
 import 'package:flutter_four_learn_app/src/ProfileScreen.dart';
 import 'package:flutter_four_learn_app/src/PomodoroListScreen.dart';
+import 'package:flutter_four_learn_app/src/StudyTime.dart';
 
 import 'CodexScreen.dart';
 
@@ -42,7 +40,8 @@ class _MainScreenState extends State<MainScreen> {
           MainMenuScreen(),
           ProfileScreen(),
           PomodoroListScreen(),
-          CodexScreen(CodexScreen.createSampleData())
+          CodexScreen(CodexScreen.createSampleData()),
+          StudyTime()
         ],
         onPageChanged: setScreenAtual,
       ),
@@ -55,7 +54,10 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(icon: Icon(Icons.house), label: 'Menu'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
             BottomNavigationBarItem(icon: Icon(Icons.timer), label: 'Pomodoro'),
-            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'FocusCodex')
+            BottomNavigationBarItem(
+                icon: Icon(Icons.book), label: 'FocusCodex'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.menu_book), label: 'Study Time')
           ],
           onTap: (screen) {
             pc.animateToPage(screen,

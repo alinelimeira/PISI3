@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 
 import '../util/textButtons.dart';
@@ -12,20 +12,27 @@ class PomodoroScreen extends StatefulWidget {
   final int? tempoFoco;
   final int? tempoDescanso;
   final int? ciclo;
+  final int? cicloEstudado;
+  final int? tempoEstudoMinutos;
 
   const PomodoroScreen(
       {required this.name,
       required this.tempoFoco,
       required this.tempoDescanso,
       required this.ciclo,
+      required this.cicloEstudado,
+      required this.tempoEstudoMinutos,
       super.key});
 
   @override
   State<PomodoroScreen> createState() => _PomodoroScreenState();
 }
 
+var uid = FirebaseAuth.instance.currentUser!.uid;
+
 class _PomodoroScreenState extends State<PomodoroScreen> {
   var f = NumberFormat('00');
+
   int _cicloAtual = 0;
   int _seconds = 0;
   Timer _timer = Timer(Duration(milliseconds: 1), () {});
@@ -34,6 +41,8 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   Color backgroundColor = Color(0xFF55EFC4);
   @override
   Widget build(BuildContext context) {
+    int? _tempoEstudo = widget.tempoEstudoMinutos;
+    int? _ciclosCompletos = widget.cicloEstudado;
     void _StopTimer() {
       _timer.cancel();
       _seconds = 0;
@@ -66,13 +75,23 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
                 _minutes = widget.tempoDescanso;
                 backgroundColor = const Color(0xFF55EFC4);
                 _cicloAtual++;
+                _ciclosCompletos = (_ciclosCompletos! + 1);
+                _tempoEstudo = (_tempoEstudo! + widget.tempoFoco!);
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(uid)
+                    .collection('pomodoro')
+                    .doc(widget.name)
+                    .update({
+                  'ciclosEstudados': _ciclosCompletos,
+                  'tempoEstudoMinutos': _tempoEstudo
+                });
                 descanso = true;
               } else {
                 descanso = false;
                 _minutes = widget.tempoFoco;
                 backgroundColor = const Color(0xFFE32929);
                 //_timer.cancel();
-                print('Timer out');
               }
             }
           }

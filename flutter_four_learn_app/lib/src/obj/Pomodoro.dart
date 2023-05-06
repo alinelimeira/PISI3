@@ -3,7 +3,8 @@ class Pomodoro {
   int? tempoFoco;
   int? tempoDescanso;
   int? ciclos;
-  int? ciclos_estudados;
+  int? ciclosEstudados;
+  int? tempoEstudoMinutos;
 
   Pomodoro();
 
@@ -11,12 +12,16 @@ class Pomodoro {
         'nome': nome,
         'tempoFoco': tempoFoco,
         'tempoDescanso': tempoDescanso,
-        'ciclos': ciclos
+        'ciclos': ciclos,
+        'ciclosEstudados': ciclosEstudados,
+        'tempoEstudoMinutos': tempoEstudoMinutos
       };
 
   Pomodoro.fromSnapshot(snapshot)
       : nome = snapshot.data()['nome'],
         tempoFoco = snapshot.data()['tempoFoco'],
         tempoDescanso = snapshot.data()['tempoDescanso'],
-        ciclos = snapshot.data()['ciclos'];
+        ciclos = snapshot.data()['ciclos'],
+        ciclosEstudados = snapshot.data()['ciclosEstudados'],
+        tempoEstudoMinutos = snapshot.data()['tempoEstudoMinutos'];
 }
