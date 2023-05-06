@@ -3,6 +3,7 @@ class Pomodoro {
   int? tempoFoco;
   int? tempoDescanso;
   int? ciclos;
+  int? ciclos_estudados;
 
   Pomodoro();
 
